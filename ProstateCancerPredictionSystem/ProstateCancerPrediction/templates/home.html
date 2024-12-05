@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prostate Cancer Prediction System</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>
+          <p style="text-align: center">Prostate Cancer Prediction System</p>
+        </h1>
+      </div>
+    </header>
+
+    <div class="ml-container">
+      <p style="text-align: center">
+        Enter the 8 feature-values below in order:
+      </p>
+
+      <form action="{{ url_for('predict')}}" method="POST">
+        <!-- <input type="text" name="comment"/> -->
+        <div class="feature-inputs">
+          <label for="radius">Radius:</label>
+          <input type="text" name="radius" required /><br>
+          
+          <label for="texture">Texture:</label>
+          <input type="text" name="texture" required /><br>
+
+          <label for="perimeter">Perimeter:</label>
+          <input type="text" name="perimeter" required /><br>
+          
+          <label for="area">Area:</label>
+          <input type="text" name="area" required /><br>
+
+          <label for="smoothness">smoothness:</label>
+          <input type="text" name="smoothness" required /><br>
+          
+          <label for="compactness">Compactness:</label>
+          <input type="text" name="compactness" required /><br>
+
+          <label for="symmetry">Symmetry:</label>
+          <input type="text" name="symmetry" required /><br>
+          
+          <label for="fractal_dimension">Fractal_dimension:</label>
+          <input type="text" name="fractal_dimension" required /><br>
+        </div>
+        <br/>
+
+        <input type="submit" class="btn-info" value="Predict" />
+        
+      </form>
+      {% if prediction == 0 %}
+      <h1 style="color: green">
+          This is a Benign Cancer.
+      </h1>
+      {% elif prediction == 1 %}
+      <h2 style="color: red">
+          This is a Malignant Cancer.
+      </h2>
+      {% endif %}
+    </div>
+  </body>
+</html>
